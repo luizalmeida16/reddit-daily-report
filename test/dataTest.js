@@ -7,6 +7,7 @@ const app = express();
 const bodyParser = require('body-parser');
 const routes = require('../config/routes');
 const request = require('request');
+const redditApi = require('../Services/RedditApi');
 
 describe('db-test', () => {
     const newUser = new User({
@@ -95,7 +96,7 @@ describe('api-tests', () => {
 });
 
 describe('reddit-api', () => {
-    it('list-news', function(done) {
+    it('list-news-request', function(done) {
         request.get({
             url: 'https://www.reddit.com/r/worldnews/top.json?limit=1'
         }, function(err, response, body) {
@@ -104,14 +105,13 @@ describe('reddit-api', () => {
             done();
         });
     });
-    it('list-news', function(done) {
-        request.get({
-            url: 'https://www.reddit.com/r/worldnews/top.json?limit=1'
-        }, function(err, response, body) {
-            if(err) assert.ok(false, err);
-            assert.equal(JSON.parse(body).data.children.length, 1);
-            done();
-        });
+    it('list-news', async function() {
+        try {
+            let redditData = await redditApi('worldnews', 2);
+            assert.equal(redditData.data.children.length, 2);
+        }catch(err) {
+            assert.ok(false, err);
+        }
     });
 });
 

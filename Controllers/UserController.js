@@ -1,6 +1,7 @@
 const User = require('../Models/User');
 const Subreddit = require('../Models/Subreddit');
 const moment = require('moment');
+const redditApi = require('../Services/RedditApi');
 
 class UserController{
     constructor(){}

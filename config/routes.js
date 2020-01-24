@@ -16,7 +16,6 @@ router.post('/users', (req, res) => userController.createUser(req, res));
 router.get('/users', (req, res) => userController.getUsers(req, res));
 router.post('/users/:id/subreddits', (req, res) => userController.addUserSubreddit(req, res));
 router.delete('/users/:id/subreddits/:subreddit_id', (req, res) => userController.removeUserSubreddit(req, res));
-//router.get('/user/:id', (req, res) => userController.getUser(req, res));
 
 //User Routes
 router.post('/subreddit', (req, res) => subredditController.createSubreddit(req, res));
