@@ -8,7 +8,8 @@ const schema = new Schema({
     },
     email: {
         type: String,
-        required: true
+        required: true,
+        unique: true
     },
     subreddits: [{
         type: Schema.Types.ObjectId,
