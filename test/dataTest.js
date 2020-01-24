@@ -94,5 +94,26 @@ describe('api-tests', () => {
     });
 });
 
+describe('reddit-api', () => {
+    it('list-news', function(done) {
+        request.get({
+            url: 'https://www.reddit.com/r/worldnews/top.json?limit=1'
+        }, function(err, response, body) {
+            if(err) assert.ok(false, err);
+            assert.equal(response.statusCode, 200);
+            done();
+        });
+    });
+    it('list-news', function(done) {
+        request.get({
+            url: 'https://www.reddit.com/r/worldnews/top.json?limit=1'
+        }, function(err, response, body) {
+            if(err) assert.ok(false, err);
+            assert.equal(JSON.parse(body).data.children.length, 1);
+            done();
+        });
+    });
+});
+
 
 
